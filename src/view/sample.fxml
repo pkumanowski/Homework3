@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="728.0" prefWidth="1024.0" fx:controller="controller.Controller" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="152.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="448.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane prefHeight="100.0" prefWidth="153.0">
+                     <children>
+                        <Button fx:id="wczytajBtn" alignment="TOP_LEFT" layoutX="48.0" layoutY="38.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Wczytaj" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="129.0">
+               <children>
+                  <AnchorPane prefHeight="100.0" prefWidth="153.0">
+                     <children>
+                        <Button fx:id="zapiszBtn" layoutX="52.0" layoutY="38.0" mnemonicParsing="false" text="Zapisz" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="128.0">
+               <children>
+                  <AnchorPane prefHeight="100.0" prefWidth="153.0">
+                     <children>
+                        <Button fx:id="dodajBtn" layoutX="53.0" layoutY="38.0" mnemonicParsing="false" text="Dodaj" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane prefHeight="100.0" prefWidth="154.0">
+                     <children>
+                        <Button fx:id="raportBtn" layoutX="51.0" layoutY="38.0" mnemonicParsing="false" text="Raport" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <TableView fx:id="tableId" layoutX="152.0" prefHeight="728.0" prefWidth="401.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="imieCol" maxWidth="200.0" minWidth="100.0" prefWidth="133.0" text="C1" />
+          <TableColumn fx:id="nazwiskoCol" minWidth="100.0" prefWidth="133.0" text="C2" />
+            <TableColumn fx:id="pokojCol" maxWidth="1.7976931348623157E308" prefWidth="133.0" text="Column X" />
+        </columns>
+      </TableView>
+      <VBox layoutX="553.0" prefHeight="728.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="233.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="232.0" text="Imie">
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <AnchorPane>
+                           <children>
+                              <TextField fx:id="imieTField" layoutX="16.0" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="231.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="250.0" text="Nazwisko">
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <AnchorPane>
+                           <children>
+                              <TextField fx:id="nazwiskoTField" layoutX="17.0" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="231.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="237.0" text="Nr pokoju">
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <AnchorPane>
+                           <children>
+                              <TextField fx:id="nrPokojuTField" layoutX="21.0" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="784.0" prefHeight="728.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="224.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="242.0" text="Godz. rozp. pracy">
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <AnchorPane>
+                           <children>
+                              <TextField fx:id="rozpoczeciePracyTfield" layoutX="12.0" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="224.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="37.0" prefWidth="224.0" text="Godz. zakonczenia pracy">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <AnchorPane>
+                           <children>
+                              <TextField fx:id="zakonczeniePracyTField" layoutX="12.0" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
