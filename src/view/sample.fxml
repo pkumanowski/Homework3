@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="728.0" prefWidth="1024.0" fx:controller="controller.Controller" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="728.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
       <VBox prefHeight="400.0" prefWidth="152.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="448.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -46,11 +47,11 @@
             </HBox>
          </children>
       </VBox>
-      <TableView fx:id="tableId" layoutX="152.0" prefHeight="728.0" prefWidth="401.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="tableView" layoutX="152.0" prefHeight="728.0" prefWidth="401.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="imieCol" maxWidth="200.0" minWidth="100.0" prefWidth="133.0" text="C1" />
-          <TableColumn fx:id="nazwiskoCol" minWidth="100.0" prefWidth="133.0" text="C2" />
-            <TableColumn fx:id="pokojCol" maxWidth="1.7976931348623157E308" prefWidth="133.0" text="Column X" />
+          <TableColumn fx:id="imieCol" maxWidth="200.0" minWidth="100.0" prefWidth="133.0" text="Imie" />
+          <TableColumn fx:id="nazwiskoCol" minWidth="100.0" prefWidth="133.0" text="Nazwisko" />
+            <TableColumn fx:id="pokojCol" maxWidth="1.7976931348623157E308" prefWidth="133.0" text="Pokoj" />
         </columns>
       </TableView>
       <VBox layoutX="553.0" prefHeight="728.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">

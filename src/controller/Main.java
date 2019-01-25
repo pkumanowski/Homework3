@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +13,8 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/sample.fxml"));
         AnchorPane pane = loader.load();
         Scene scene = new Scene(pane);
+        Controller mainController = loader.getController();
+        mainController.setMain(this, primaryStage);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
