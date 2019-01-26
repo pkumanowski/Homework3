@@ -3,8 +3,6 @@ package model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.util.ArrayList;
-
 public class Pracownik {
 
     StringProperty imie = new SimpleStringProperty();
@@ -72,4 +70,5 @@ public class Pracownik {
     public void setGodzZakPracy(String godzZakPracy) {
         this.godzZakPracy.set(godzZakPracy);
     }
+
 }

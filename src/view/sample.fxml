@@ -52,6 +52,8 @@
           <TableColumn fx:id="imieCol" maxWidth="200.0" minWidth="100.0" prefWidth="133.0" text="Imie" />
           <TableColumn fx:id="nazwiskoCol" minWidth="100.0" prefWidth="133.0" text="Nazwisko" />
             <TableColumn fx:id="pokojCol" maxWidth="1.7976931348623157E308" prefWidth="133.0" text="Pokoj" />
+            <TableColumn fx:id="rozPracyCol" prefWidth="75.0" text="rozPracy" />
+            <TableColumn fx:id="zakPracyCol" prefWidth="75.0" text="zakPracy" />
         </columns>
       </TableView>
       <VBox layoutX="553.0" prefHeight="728.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
