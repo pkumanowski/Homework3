@@ -15,11 +15,13 @@ import model.Pracownik;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Controller implements Initializable {
@@ -61,7 +63,7 @@ public class Controller implements Initializable {
     private Stage primaryStage;
     PrintWriter out = null;
 
-    private Collection<Pracownik> list = Files.readAllLines(new File("/Users/pawel/IdeaProjects/homework/Homework3/src/input.txt").toPath())
+    private Collection<Pracownik> list = Files.readAllLines(new File("C:/javaFX/Homework3/src/input.txt").toPath())
             .stream()
             .map(line -> {
                 String[] details = line.split(" ");
@@ -130,11 +132,11 @@ public class Controller implements Initializable {
             Writer writer=null;
 
             try{
-                File file=new File("/Users/pawel/IdeaProjects/homework/Homework3/src/input.txt");
+                File file=new File("C:/javaFX/Homework3/src/input.txt");
                 writer=new BufferedWriter(new FileWriter(file));
                 for(Pracownik prac:listaPracownikow)
                 {
-                    String text=prac.getImie()+" "+prac.getNazwisko()+" "+prac.getPokoj()+" "+prac.getGodzRozPracy()+" "+prac.getGodzZakPracy()+ "\n";
+                    String text=prac.getImie()+ " " + prac.getNazwisko()+" " + prac.getPokoj()+ " " + prac.getGodzRozPracy()+ " "+ prac.getGodzZakPracy() + "\n";
 
                     writer.write(text);
                 }
@@ -155,10 +157,18 @@ public class Controller implements Initializable {
                     }
                 }
             }
-
-
         });
-//        raportBtn.setOnAction(event -> );
+      raportBtn.setOnAction(event -> {
+              Path initialFile = Paths.get("C:/javaFX/Homework3/src/input.txt");
+              Path sortedFile = Paths.get("C:/javaFX/Homework3/src/raport.txt");
+
+              try {
+                  Stream<CharSequence> sortedLines = Files.lines(initialFile).sorted().map(Function.identity());
+                  Files.write(sortedFile, sortedLines::iterator, StandardOpenOption.CREATE);
+              } catch (IOException e) {
+                  e.printStackTrace();
+              }
+          });
     }
     private void setTable() {
     }

@@ -10,6 +10,15 @@ public class Pracownik {
     StringProperty pokoj = new SimpleStringProperty();
     StringProperty godzRozPracy = new SimpleStringProperty();
     StringProperty godzZakPracy = new SimpleStringProperty();
+    private int czasPracy;
+
+    public int getCzasPracy() {
+        return czasPracy;
+    }
+
+    public void setCzasPracy(int czasPracy) {
+        this.czasPracy = czasPracy;
+    }
 
     public String getImie() {
         return imie.get();
@@ -71,4 +80,7 @@ public class Pracownik {
         this.godzZakPracy.set(godzZakPracy);
     }
 
+    public void obliczCzasPracy (){
+
+    }
 }
