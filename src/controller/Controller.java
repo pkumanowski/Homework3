@@ -1,7 +1,5 @@
 package controller;
 
-
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,17 +9,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Pracownik;
+import model.PracownikComparator;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 
 public class Controller implements Initializable {
@@ -35,9 +30,9 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Pracownik, String> pokojCol;
     @FXML
-    private TableColumn<Pracownik, String> rozPracyCol;
+    private TableColumn<Pracownik, Integer> rozPracyCol;
     @FXML
-    private TableColumn<Pracownik, String> zakPracyCol;
+    private TableColumn<Pracownik, Integer> zakPracyCol;
 
     @FXML
     private TextField imieTField;
@@ -61,7 +56,6 @@ public class Controller implements Initializable {
 
     private Main main;
     private Stage primaryStage;
-    PrintWriter out = null;
 
     private Collection<Pracownik> list = Files.readAllLines(new File("C:/javaFX/Homework3/src/input.txt").toPath())
             .stream()
@@ -71,8 +65,9 @@ public class Controller implements Initializable {
                 prac.setImie(details[0]);
                 prac.setNazwisko(details[1]);
                 prac.setPokoj(details[2]);
-                prac.setGodzZakPracy(details[3]);
-                prac.setGodzRozPracy(details[4]);
+                prac.setGodzRozPracy(Integer.parseInt(details[3]));
+                prac.setGodzZakPracy(Integer.parseInt(details[4]));
+                prac.getCzasPracy();
                 return prac;
             })
             .collect(Collectors.toList());
@@ -99,8 +94,8 @@ public class Controller implements Initializable {
             imieTField.setText(wybranyTextField.getImie());
             nazwiskoTField.setText(wybranyTextField.getNazwisko());
             nrPokojuTField.setText(wybranyTextField.getPokoj());
-            rozpoczeciePracyTfield.setText(wybranyTextField.getGodzRozPracy());
-            zakonczeniePracyTField.setText(wybranyTextField.getGodzZakPracy());
+            rozpoczeciePracyTfield.setText(String.valueOf(wybranyTextField.getGodzRozPracy()));
+            zakonczeniePracyTField.setText(String.valueOf(wybranyTextField.getGodzZakPracy()));
         }
     }
     @Override
@@ -118,8 +113,8 @@ public class Controller implements Initializable {
             alan.setImie(imieTField.getText());
             alan.setNazwisko(nazwiskoTField.getText());
             alan.setPokoj(nrPokojuTField.getText());
-            alan.setGodzRozPracy(rozpoczeciePracyTfield.getText());
-            alan.setGodzZakPracy(zakonczeniePracyTField.getText());
+            alan.setGodzRozPracy(Integer.parseInt(rozpoczeciePracyTfield.getText()));
+            alan.setGodzZakPracy(Integer.parseInt(zakonczeniePracyTField.getText()));
             imieCol.setCellValueFactory(new PropertyValueFactory<>("imie"));
             nazwiskoCol.setCellValueFactory(new PropertyValueFactory<>("nazwisko"));
             pokojCol.setCellValueFactory(new PropertyValueFactory<>("pokoj"));
@@ -136,7 +131,7 @@ public class Controller implements Initializable {
                 writer=new BufferedWriter(new FileWriter(file));
                 for(Pracownik prac:listaPracownikow)
                 {
-                    String text=prac.getImie()+ " " + prac.getNazwisko()+" " + prac.getPokoj()+ " " + prac.getGodzRozPracy()+ " "+ prac.getGodzZakPracy() + "\n";
+                    String text = prac.getImie()+ " " + prac.getNazwisko()+" " + prac.getPokoj()+ " " + prac.getGodzRozPracy()+ " " + prac.getGodzZakPracy() + "\n";
 
                     writer.write(text);
                 }
@@ -159,15 +154,33 @@ public class Controller implements Initializable {
             }
         });
       raportBtn.setOnAction(event -> {
-              Path initialFile = Paths.get("C:/javaFX/Homework3/src/input.txt");
-              Path sortedFile = Paths.get("C:/javaFX/Homework3/src/raport.txt");
-
-              try {
-                  Stream<CharSequence> sortedLines = Files.lines(initialFile).sorted().map(Function.identity());
-                  Files.write(sortedFile, sortedLines::iterator, StandardOpenOption.CREATE);
-              } catch (IOException e) {
-                  e.printStackTrace();
+          Writer writer=null;
+          List<Pracownik> temp = listaPracownikow;
+          try {
+              File file = new File("C:/javaFX/Homework3/src/raport.txt");
+              writer = new BufferedWriter(new FileWriter(file));
+              for(Pracownik prac:temp){
+                  String text = prac.getImie() + " " + prac.getNazwisko()+ " " + prac.getPokoj() + " " + prac.getGodzRozPracy() + " " + prac.getGodzZakPracy() + " " + prac.getCzasPracy() + "\n";
+                  Collections.sort(temp, new PracownikComparator());
+                  writer.write(text);
+                  
               }
+          } catch (IOException e) {
+              e.printStackTrace();
+          }            finally{
+              {
+                  try{
+                      writer.flush();
+                  }catch(IOException e){
+                      e.printStackTrace();
+                  }
+                  try{
+                      writer.close();
+                  }catch(IOException e){
+                      e.printStackTrace();
+                  }
+              }
+          }
           });
     }
     private void setTable() {
@@ -179,29 +192,3 @@ public class Controller implements Initializable {
     }
 }
 
-
-
-//List<List<String>>arrList=newArrayList<>();
-//Pracownikprac=newPracownik();
-//for(inti=0;i<tableView.getItems().size();i++){
-//prac=tableView.getItems().get(i);
-//arrList.add(newArrayList<>());
-//arrList.get(i).add(prac.getImie());
-//arrList.get(i).add(prac.getNazwisko());
-//arrList.get(i).add(prac.getPokoj());
-//arrList.get(i).add(prac.getGodzRozPracy());
-//arrList.get(i).add(prac.getGodzZakPracy());
-//}
-//for(inti=0;i<arrList.size();i++){
-//for(intj=0;j<arrList.get(i).size();j++){
-////System.out.println(arrList.get(i).get(j));
-//try{
-//Stringtmp=arrList.toString();
-//PrintWriterpw=newPrintWriter(newFileOutputStream("C:/javaFX/Homework3/src/input2.txt"));
-//pw.write(tmp);
-//pw.close();
-//}catch(FileNotFoundExceptione){
-//e.printStackTrace();
-//}
-//}
-//}

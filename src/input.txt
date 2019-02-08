@@ -1,2 +1,6 @@
-Alan Alan 12 16 8
-Aran Waran 12 7 18
+Alan Alan 12 7 15
+Aran Waran 12 6 13
+mamar bamar 12 6 18
+Alan Alan 12 7 9
+Alan Alan 12 5 11
+Baba Srata 12 11 15

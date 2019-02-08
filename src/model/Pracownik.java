@@ -1,5 +1,7 @@
 package model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -8,16 +10,40 @@ public class Pracownik {
     StringProperty imie = new SimpleStringProperty();
     StringProperty nazwisko = new SimpleStringProperty();
     StringProperty pokoj = new SimpleStringProperty();
-    StringProperty godzRozPracy = new SimpleStringProperty();
-    StringProperty godzZakPracy = new SimpleStringProperty();
-    private int czasPracy;
+    IntegerProperty godzRozPracy = new SimpleIntegerProperty();
+    IntegerProperty godzZakPracy = new SimpleIntegerProperty();
+    StringProperty czasPracy = new SimpleStringProperty();
 
-    public int getCzasPracy() {
-        return czasPracy;
+    public void setCzasPracy(StringProperty czasPracy) {
+        this.czasPracy = czasPracy;
     }
 
-    public void setCzasPracy(int czasPracy) {
-        this.czasPracy = czasPracy;
+    public int getCzasPracy() {
+        return getGodzZakPracy() - getGodzRozPracy();
+    }
+
+    public int getGodzRozPracy() {
+        return godzRozPracy.get();
+    }
+
+    public IntegerProperty godzRozPracyProperty() {
+        return godzRozPracy;
+    }
+
+    public void setGodzRozPracy(int godzRozPracy) {
+        this.godzRozPracy.set(godzRozPracy);
+    }
+
+    public int getGodzZakPracy() {
+        return godzZakPracy.get();
+    }
+
+    public IntegerProperty godzZakPracyProperty() {
+        return godzZakPracy;
+    }
+
+    public void setGodzZakPracy(int godzZakPracy) {
+        this.godzZakPracy.set(godzZakPracy);
     }
 
     public String getImie() {
@@ -56,31 +82,4 @@ public class Pracownik {
         this.pokoj.set(pokoj);
     }
 
-    public String getGodzRozPracy() {
-        return godzRozPracy.get();
-    }
-
-    public StringProperty godzRozPracyProperty() {
-        return godzRozPracy;
-    }
-
-    public void setGodzRozPracy(String godzRozPracy) {
-        this.godzRozPracy.set(godzRozPracy);
-    }
-
-    public String getGodzZakPracy() {
-        return godzZakPracy.get();
-    }
-
-    public StringProperty godzZakPracyProperty() {
-        return godzZakPracy;
-    }
-
-    public void setGodzZakPracy(String godzZakPracy) {
-        this.godzZakPracy.set(godzZakPracy);
-    }
-
-    public void obliczCzasPracy (){
-
-    }
 }
